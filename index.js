@@ -1,18 +1,16 @@
 const http = require('http');
 
+const citiesData = require('./citiesData');
+
 http.createServer((req,res)=>{
     
     let response = '';
 
     if(req.url == '/'){
-        response = "Home Page"
+        res.setHeader('Content-Type','text/json');
+        res.write(JSON.stringify(citiesData));
+        res.end();
     }
-    if(req.url == '/about'){
-        response = "About Page"
-    }
-    res.setHeader('Content-Type','text/html');
-    res.write(response);
-    res.end();
 
 }).listen(8000);
 
